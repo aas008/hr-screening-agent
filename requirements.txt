@@ -20,10 +20,15 @@ python-dotenv>=1.0.0
 # Email
 secure-smtplib>=0.1.1
 
-# Data Processing
+# Data Processing & Visualization
 pandas>=2.0.0
 numpy>=1.24.0
 plotly>=5.15.0
+
+# Streamlit Additional Components
+streamlit-option-menu>=0.3.6
+streamlit-aggrid>=0.3.4
+streamlit-ace>=0.1.1
 
 # Utilities
 python-dateutil>=2.8.0

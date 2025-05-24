@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from datetime import datetime
 import torch
 from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM
-from github_loader import CandidateInfo
+from .github_loader import CandidateInfo
 
 @dataclass
 class AnalysisResult:

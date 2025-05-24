@@ -5,13 +5,13 @@ Handles automated email responses to candidates
 
 import os
 import smtplib
-from email.mime.text import MimeText
-from email.mime.multipart import MimeMultipart
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from typing import Dict, List, Optional, Tuple
 from dataclasses import dataclass
 from datetime import datetime
-from github_loader import CandidateInfo
-from resume_analyzer import AnalysisResult
+from .github_loader import CandidateInfo
+from .resume_analyzer import AnalysisResult
 
 @dataclass
 class EmailResult:
@@ -300,13 +300,13 @@ Best regards,
         
         try:
             # Create message
-            msg = MimeMultipart()
+            msg = MIMEMultipart()
             msg['From'] = self.email_address
             msg['To'] = to_email
             msg['Subject'] = subject
             
             # Add message body
-            msg.attach(MimeText(message, 'plain'))
+            msg.attach(MIMEText(message, 'plain'))
             
             # Connect to server and send
             server = smtplib.SMTP(self.smtp_server, self.smtp_port)
