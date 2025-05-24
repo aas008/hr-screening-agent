@@ -1,0 +1,22 @@
+Dear {candidate_name},
+
+Thank you for your interest in the {job_title} position at {company_name} and for taking the time to submit your application. We appreciate you considering us as a potential employer.
+
+After careful review of your qualifications against our current requirements, we have decided to move forward with other candidates whose experience more closely aligns with the specific needs of this role.
+
+This decision doesn't reflect on your abilities or potential – we receive many qualified applications, and unfortunately, we can only move forward with a limited number of candidates for each position.
+
+We encourage you to:
+• Keep an eye on our careers page for future opportunities that may be a better match
+• Consider applying for other positions that align with your background and interests
+• Connect with us on LinkedIn to stay updated on new openings
+
+We genuinely appreciate your interest in {company_name} and wish you the very best in your job search. We're confident you'll find a great opportunity that's the right fit for your skills and career goals.
+
+Best of luck!
+
+Best regards,
+{company_name} Talent Team
+
+---
+This is an automated message from our HR screening system. We wish you success in your career journey!

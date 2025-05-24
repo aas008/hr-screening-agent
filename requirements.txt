@@ -1,0 +1,30 @@
+# Core Dependencies
+langgraph>=0.0.40
+langchain>=0.1.0
+streamlit>=1.28.0
+
+# Document Processing
+PyPDF2>=3.0.0
+python-docx>=0.8.11
+pdfplumber>=0.9.0
+
+# AI/ML Libraries
+transformers>=4.30.0
+torch>=2.0.0
+huggingface-hub>=0.16.0
+
+# API and Web
+requests>=2.31.0
+python-dotenv>=1.0.0
+
+# Email
+secure-smtplib>=0.1.1
+
+# Data Processing
+pandas>=2.0.0
+numpy>=1.24.0
+plotly>=5.15.0
+
+# Utilities
+python-dateutil>=2.8.0
+regex>=2023.6.3

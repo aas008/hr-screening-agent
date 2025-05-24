@@ -1,0 +1,26 @@
+Dear {candidate_name},
+
+Thank you for your application for the {job_title} position at {company_name}. We're interested in learning more about your background and experience.
+
+Your initial application shows promise, and we'd like to gather some additional information to better understand your qualifications for this role.
+
+Could you please provide more details about:
+{info_requests}
+
+Additional Information (Optional):
+• Links to your portfolio, GitHub profile, or professional website
+• Any relevant certifications or training you've completed
+• Brief description of your most significant project or achievement
+• Your availability and preferred start date
+
+Please reply to this email with the requested information within the next 5 business days. Once we receive your response, we'll continue with our review process and get back to you promptly.
+
+We appreciate your interest in {company_name} and look forward to learning more about your experience and qualifications.
+
+If you have any questions about what we're looking for or need clarification on anything, please don't hesitate to ask.
+
+Best regards,
+{company_name} Talent Team
+
+---
+This is part of our automated screening process. A team member will personally review your response.

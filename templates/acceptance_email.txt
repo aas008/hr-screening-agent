@@ -1,0 +1,20 @@
+Dear {candidate_name},
+
+Thank you for your application for the {job_title} position at {company_name}. We're impressed with your background and technical experience, and we're excited to move forward with the next step in our hiring process.
+
+Based on our initial review, your skills and experience align well with what we're looking for in this role. We'd love to learn more about you and discuss how you might contribute to our team.
+
+Next Steps:
+• We'll be reaching out within the next 2-3 business days to schedule a phone screening
+• The initial conversation will be about 30 minutes and cover your experience and interest in the role
+• Please feel free to prepare any questions you have about the position, team, or company culture
+
+We're looking forward to speaking with you soon and learning more about your experience and career goals.
+
+If you have any questions in the meantime, please don't hesitate to reach out.
+
+Best regards,
+{company_name} Talent Team
+
+---
+This is an automated message from our HR screening system. We'll follow up personally soon!
