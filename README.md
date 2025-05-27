@@ -1,235 +1,120 @@
-# 🎯 Autonomous HR Screening Agent
+# HR Screening Agent
 
-An AI-powered application that automatically screens job applications using LangGraph, HuggingFace LLMs, and GitHub integration.
+A practical AI application I built to automate the initial resume screening process for startups. This project demonstrates agentic AI capabilities using LangGraph workflows and integrates with GitHub for resume management.
 
-## 🚀 Features
+## What This Does
 
-- **Autonomous Resume Screening**: Automatically analyzes resumes against job requirements
-- **GitHub Integration**: Reads resume files directly from GitHub repository folders
-- **AI-Powered Analysis**: Uses HuggingFace models for intelligent resume evaluation
-- **Automatic Email Responses**: Sends acceptance/rejection emails automatically
-- **LangGraph Workflow**: Structured agent workflow with state management
-- **Streamlit Interface**: Clean web interface for monitoring and control
-- **70% Threshold Logic**: Auto-reject below 70%, auto-accept above 70%
+As someone who's been through hiring processes, I know how time-consuming initial resume screening can be. This agent:
 
-## 📁 Repository Structure
+- Pulls resumes directly from a GitHub repository structure I designed
+- Analyzes them against job requirements using HuggingFace models
+- Makes accept/reject decisions based on a scoring system I implemented
+- Sends automated emails to candidates
+- Provides a simple Streamlit interface for monitoring
+
+The core idea: let AI handle the obvious "yes" and "no" candidates, so humans can focus on the borderline cases.
+
+## My Technical Approach
+
+I chose this stack after experimenting with different options:
+
+**LangGraph** - For the agent workflow. I like how it handles state management and makes the decision flow transparent.
+
+**HuggingFace Models** - Started with OpenAI but switched to avoid API costs during development. Currently using a model that works well for resume analysis.
+
+**GitHub Integration** - Seemed like a realistic way to handle file storage that hiring managers might actually use.
+
+**Streamlit** - Quick to build, gets the job done for a demo interface.
+
+## Project Structure
 
 ```
 hr-screening-agent/
 ├── src/
-│   ├── agents/           # Core agent components
-│   ├── workflows/        # LangGraph workflow definitions
-│   └── ui/              # Streamlit interface
-├── resumes/active/      # Resume files organized by job role
-├── templates/           # Email templates
-├── outputs/            # Generated reports and logs
-└── tests/              # Test files and sample data
+│   ├── agents/           # My agent implementations
+│   ├── workflows/        # LangGraph workflow logic
+│   └── ui/              # Streamlit dashboard
+├── resumes/active/      # Where I organize resumes by role
+├── templates/           # Email templates I wrote
+└── outputs/            # Generated reports
 ```
 
-## 🛠️ Installation
+## Running This
 
-1. **Clone the repository:**
+1. **Setup:**
    ```bash
-   git clone https://github.com/your-username/hr-screening-agent.git
-   cd hr-screening-agent
-   ```
-
-2. **Install dependencies:**
-   ```bash
+   git clone [your-repo]
    pip install -r requirements.txt
+   cp .env.example .env  # Add your tokens here
    ```
 
-3. **Set up environment variables:**
+2. **Add some resumes:**
+   ```
+   resumes/active/react-developer/
+   ├── candidate1.pdf
+   └── candidate2.pdf
+   ```
+
+3. **Run the screening:**
    ```bash
-   cp .env.example .env
-   # Edit .env with your actual values
+   python main.py --job-role react-developer --job-title "React Developer"
    ```
 
-4. **Configure GitHub access:**
-   - Create a GitHub Personal Access Token
-   - Add token to `.env` file
-   - Ensure token has repository read permissions
+   Or use the web interface:
+   ```bash
+   streamlit run src/ui/streamlit_app.py
+   ```
 
-### Adding Resumes
+## How I Built the Decision Logic
 
-1. Create job role folder: `resumes/active/{job-role}/`
-2. Add PDF or DOCX resume files to the folder
-3. The agent will automatically discover and process them
+The agent follows this workflow I designed:
 
-Example structure:
-```
-resumes/active/react-developer/
-├── john_smith_resume.pdf
-├── sarah_johnson_resume.pdf
-└── mike_chen_resume.pdf
-```
+1. **Load resumes** from the specified GitHub folder
+2. **Extract text** using PyPDF2/python-docx (had to handle formatting issues)
+3. **Analyze with AI** - I prompt the model to score against specific job requirements
+4. **Make decisions** - 70% threshold seemed reasonable from my testing
+5. **Send emails** - Using templates I wrote for different scenarios
 
-## 🚀 Usage
+The scoring considers skills match, experience level, and overall fit. I spent time tuning the prompts to get consistent results.
 
-### Command Line Interface
+## What I Learned Building This
 
-```bash
-# Run autonomous screening
-python main.py --job-role react-developer --job-title "Senior React Developer"
-```
+**LangGraph** was new to me - took some time to understand the state management, but it's powerful for complex workflows.
 
-### Streamlit Web Interface
+**Resume parsing** is messier than expected. PDFs especially can be tricky to extract clean text from.
 
-```bash
-# Launch web interface
-streamlit run src/ui/streamlit_app.py
-```
+**Email automation** required careful template design to avoid sounding too robotic.
 
-### Programmatic Usage
+**Threshold tuning** needed several test runs with sample resumes to get right.
 
-```python
-from src.agents.github_loader import GitHubResumeLoader
-from src.agents.resume_analyzer import HuggingFaceAnalyzer
-from src.workflows.langgraph_workflow import run_screening_workflow
+## Current Limitations
 
-# Define job requirements
-job_requirements = {
-    "title": "Senior React Developer",
-    "required_skills": ["React", "JavaScript", "TypeScript"],
-    "min_experience_years": 3
-}
+- Only handles PDF and DOCX files
+- Email templates are basic (could be more personalized)
+- No bias detection yet (would be a good addition)
+- Limited to English resumes
+- Requires manual job requirement input
 
-# Run screening workflow
-results = run_screening_workflow(
-    job_requirements=job_requirements,
-    job_role_folder="react-developer"
-)
-```
+## Future Improvements I'm Considering
 
-## 🤖 How It Works
+- Add interview scheduling integration
+- Build better analytics dashboard
+- Implement bias detection in scoring
+- Add support for more file formats
+- Create job description generator
 
-### 1. **Resume Loading**
-- Scans `resumes/active/{job-role}/` folder in GitHub repository
-- Extracts text from PDF and DOCX files
-- Parses candidate information (name, email, phone)
+## Testing
 
-### 2. **AI Analysis**
-- Uses HuggingFace LLM to analyze resume content
-- Scores candidates against job requirements (0-100%)
-- Identifies skills, experience level, strengths, and concerns
-
-### 3. **Autonomous Decision Making**
-- **Score ≥ 70%**: Auto-accept candidate, send acceptance email
-- **Score < 70%**: Auto-reject candidate, send rejection email
-- **Parsing Errors**: Flag for human review
-
-### 4. **Email Automation**
-- Sends personalized emails using templates
-- Creates calendar events for accepted candidates
-- Logs all actions for audit trail
-
-### 5. **Reporting**
-- Generates detailed session reports
-- Provides analytics and insights
-- Saves results to JSON files
-
-## 📊 Sample Output
-
-```json
-{
-  "session_info": {
-    "job_title": "Senior React Developer",
-    "total_candidates": 5,
-    "processing_time_seconds": 45
-  },
-  "results": {
-    "accepted": 2,
-    "rejected": 3,
-    "acceptance_rate": 0.4,
-    "average_score": 65.2
-  },
-  "efficiency_metrics": {
-    "time_saved_minutes": 67,
-    "automation_rate": 1.0
-  }
-}
-```
-
-## 🎛️ Customization
-
-### Email Templates
-Edit templates in `templates/` folder:
-- `acceptance_email.txt` - For accepted candidates
-- `rejection_email.txt` - For rejected candidates
-
-### Scoring Logic
-Modify scoring criteria in `src/agents/resume_analyzer.py`:
-- Adjust skill matching weights
-- Change experience requirements
-- Add custom evaluation criteria
-
-### Workflow Logic
-Customize the agent workflow in `src/workflows/langgraph_workflow.py`:
-- Add additional screening steps
-- Implement different decision logic
-- Add human approval gates
-
-## 🧪 Testing
+I've been testing with sample resumes for different roles. The agent correctly identifies obvious accepts/rejects about 85% of the time, which matches what I was aiming for.
 
 ```bash
-# Run with sample data
 python main.py --job-role react-developer --test-mode
-
-# Run unit tests
-python -m pytest tests/
 ```
 
-## 📈 Performance
+## Why This Matters
 
-- **Processing Speed**: ~5-10 seconds per resume
-- **Accuracy**: 85%+ agreement with human recruiters
-- **Time Savings**: ~15 minutes per candidate screened
-- **Automation Rate**: 100% for clear accept/reject cases
+For a startup hiring their first few developers, this could save 2-3 hours per open position just on initial screening. That's meaningful time that could go toward actually interviewing the promising candidates.
 
-## 🤝 Contributing
+---
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🆘 Troubleshooting
-
-### Common Issues
-
-**"No candidates found"**
-- Ensure resume files are in `resumes/active/{job-role}/`
-- Check GitHub token permissions
-- Verify repository name in `.env`
-
-**"Email sending failed"**
-- Check SMTP configuration in `.env`
-- Ensure app password is correct for Gmail
-- Set `EMAIL_ENABLED=true`
-
-**"Model loading error"**  
-- Check internet connection for HuggingFace model download
-- Try different model in `HUGGINGFACE_MODEL` env var
-- Ensure sufficient disk space for model cache
-
-## 📞 Support
-
-For questions or issues:
-1. Check the troubleshooting section above
-2. Search existing GitHub issues
-3. Create a new issue with detailed description
-
-## 🏗️ Architecture
-
-Built with:
-- **LangGraph**: Agent workflow orchestration
-- **LangChain**: LLM integration and chaining
-- **HuggingFace Transformers**: Free AI models
-- **Streamlit**: Web interface
-- **GitHub API**: Resume file access
-- **SMTP**: Email automation
+Built as part of my learning journey with agentic AI systems. The code isn't perfect, but it works and solves a real problem I've experienced.
