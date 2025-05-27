@@ -117,7 +117,3 @@ python main.py --job-role react-developer --test-mode
 ## Why This Matters
 
 For a startup hiring their first few developers, this could save 2-3 hours per open position just on initial screening. That's meaningful time that could go toward actually interviewing the promising candidates.
-
----
-
-Built as part of my learning journey with agentic AI systems. The code isn't perfect, but it works and solves a real problem I've experienced.
