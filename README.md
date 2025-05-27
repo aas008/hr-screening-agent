@@ -69,11 +69,13 @@ hr-screening-agent/
 
 The agent follows this workflow I designed:
 
-1. **Load resumes** from the specified GitHub folder
-2. **Extract text** using PyPDF2/python-docx (had to handle formatting issues)
-3. **Analyze with AI** - I prompt the model to score against specific job requirements
-4. **Make decisions** - 70% threshold seemed reasonable from my testing
-5. **Send emails** - Using templates I wrote for different scenarios
+1. **Generate Job Description** - Create detailed JD with requirements and nice-to-haves
+2. **Load resumes** from the specified GitHub folder
+3. **Extract text** using PyPDF2/python-docx (had to handle formatting issues)
+4. **Analyze with AI** - I prompt the model to score against specific job requirements
+5. **Make decisions** - 70% threshold seemed reasonable from my testing
+6. **Send emails** - Using templates I wrote for different scenarios
+7. **Schedule interviews** - Calendar integration for accepted candidates
 
 The scoring considers skills match, experience level, and overall fit. I spent time tuning the prompts to get consistent results.
 
@@ -97,11 +99,12 @@ The scoring considers skills match, experience level, and overall fit. I spent t
 
 ## Future Improvements I'm Considering
 
-- Add interview scheduling integration
+- **Referral Flagging:** Automatically detect and highlight candidate referrals to ensure top recommendations surface first.
+- **RAG‑Powered Search Tool:** Implement a retrieval‑augmented generation interface for real‑time, natural‑language queries across all candidate data.
+- **Fine‑Tuning & Feedback Loop:** Integrate interviewer feedback to continuously retrain and refine scoring models for greater precision.
 - Build better analytics dashboard
 - Implement bias detection in scoring
 - Add support for more file formats
-- Create job description generator
 
 ## Testing
 
